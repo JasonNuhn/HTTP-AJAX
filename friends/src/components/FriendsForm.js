@@ -1,43 +1,72 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { newFriends } from '../actions';
+import { addFriends, getFriends } from '../actions';
 
 class FriendsForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newFriends: ''
+      newName: '',
+      newAge: '',
+      newEmail: '',
     };
-    this.newFriends = this.newFriend.bind(this);
-    this.updateNewFriends = this.updateNewFriends.bind(this);
+    this.updateNewName = this.updateNewName.bind(this);
+    this.updateNewAge = this.updateNewAge.bind(this);
+    this.updateNewEmail = this.updateNewEmail.bind(this);
+    this.addFriends = this.addFriends.bind(this);
   }
 
-  newFriends(event) {
+  addFriends(event) {
     event.preventDefault();
-    this.props.newFriends({
-      value: this.state.newFriends,
-      complete: false
+    this.props.addFriends({
+      name: this.state.newName,
+      age: this.state.newAge,
+      email: this.state.newEmail,
     });
     this.setState({
-      newFriends: ''
+      newName: '',
+      newAge: '',
+      newEmail: '',
     });
   }
 
-  updateNewFriends(event) {
+  updateNewName(event) {
     this.setState({
-      newFriend: event.target.value
+      newName: event.target.value,
+    });
+  }
+
+  updateNewAge(event) {
+    this.setState({
+      newAge: event.target.value,
+    });
+  }
+
+  updateNewEmail(event) {
+    this.setState({
+      newEmail: event.target.value
     });
   }
 
   render() {
     return (
       <div className="FriendsForm">
-        <form onSubmit={this.newFriends}>
+        <form onSubmit={this.addFriends}>
           <input
-            onChange={this.updateNewFriends}
-            placeholder="new friend"
-            value={this.state.newFriend}
+            onChange={this.updateNewName}
+            placeholder="new name"
+            value={this.state.name}
+          />
+          <input
+            onChange={this.updateNewAge}
+            placeholder="new age"
+            value={this.state.age}
+          />
+          <input
+            onChange={this.updateNewEmail}
+            placeholder="new email"
+            value={this.state.email}
           />
         </form>
       </div>
@@ -45,4 +74,4 @@ class FriendsForm extends Component {
   }
 }
 
-export default connect(null, { addFriend })(FriendsForm);
+export default connect(null, { addFriends, getFriends })(FriendsForm);

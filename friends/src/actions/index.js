@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 export const GET_FRIENDS = 'GET_FRIENDS';
-export const NEW_FRIENDS = 'NEW_FRIENDS';
+export const NEW_NAME = 'NEW_NAME';
+export const NEW_AGE = 'NEW_AGE';
+export const NEW_EMAIL = 'NEW_EMAIL';
+export const ADD_FRIEND = 'ADD_FRIEND';
 
 export const getFriends = () => {
     // Add the code for this action
@@ -16,9 +19,12 @@ export const getFriends = () => {
     }
 };
 
-export const newFriends = (friend) => {
+export const addFriends = (friend) => {
+    const friendsEndpoint = 'http://localhost:5000/new-friend';
+    const friends = axios.post(friendsEndpoint, friend);
+    
     return {
-        type: NEW_FRIENDS,
+        type: ADD_FRIEND,
         payload: friend
     }
 }

@@ -8,7 +8,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import friends from './reducers';
 
-let store = createStore(friends);
+let store = createStore(friends, applyMiddleware(ReduxPromise));
 
 ReactDOM.render(
     <Provider store={store}>
