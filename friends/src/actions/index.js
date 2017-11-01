@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const GET_FRIENDS = 'GET_FRIENDS';
+export const NEW_FRIENDS = 'NEW_FRIENDS';
 
 export const getFriends = () => {
     // Add the code for this action
@@ -14,3 +15,10 @@ export const getFriends = () => {
         payload: friends,
     }
 };
+
+export const newFriends = (friend) => {
+    return {
+        type: NEW_FRIENDS,
+        payload: friend
+    }
+}
